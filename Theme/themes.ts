@@ -7,6 +7,7 @@ const PaperLightTheme: typeof MD2LightTheme = {
   colors: {
     ...MD2LightTheme.colors,
     primary: '#034b3d',
+    accent: '#006D77',
   },
   fonts: {
     ...MD2LightTheme.fonts,
@@ -33,8 +34,8 @@ const PaperDarkTheme: typeof MD2DarkTheme = {
  ...MD2DarkTheme,
  colors: {
    ...MD2DarkTheme.colors,
-   primary: '#006D77',
-   accent: '#1ae1f2',
+   primary: '#83C5BE',
+   accent: '#83C5BE',
  },
  fonts: {
    ...MD2DarkTheme.fonts,
@@ -61,7 +62,7 @@ const NavigationLightTheme: typeof DefaultTheme = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
-    primary: "#006D77"
+    primary: "#0F262E"
   },
   fonts: {
     ...DefaultTheme.fonts,
@@ -88,7 +89,7 @@ const NavigationDarkTheme: typeof DarkTheme = {
   ...DarkTheme,
   colors: {
     ...DarkTheme.colors,
-    primary: "#006D77",
+    primary: "#83C5BE",
     card: "#15212b",
     background: "#040f10",
   },

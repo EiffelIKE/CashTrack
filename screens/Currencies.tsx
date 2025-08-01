@@ -1,14 +1,46 @@
 import { Container } from '@/components/Container';
-import { useAppSelector } from '@/hooks/useReduxHooks';
-import { selectAvailableCurrencies } from '@/store/slices/CurrencySlice';
-import { Text } from 'react-native-paper';
+import { DenominationList } from '@/components/DenominationList';
+import { Text, Title } from '@/components/Text';
+import { useAvailableCurrencies } from '@/hooks/useAvailableCurrencies';
+import { ScrollView, View } from 'react-native';
+import { Divider } from 'react-native-paper';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export function CurrenciesScreen() {
-  const currencies = useAppSelector(selectAvailableCurrencies)
+  const currencies = useAvailableCurrencies();
+  const insets = useSafeAreaInsets();
 
   return (
     <Container>
-      <Text style={{ fontSize: 21 }} >Available currencies</Text>
+      <ScrollView
+        style={{ height: '100%' }}
+        contentContainerStyle={{
+          gap: 24,
+          paddingTop: 24,
+          paddingBottom: insets.bottom + 24,
+        }}
+      >
+        <Title>Available currencies</Title>
+        {currencies.map((currencie, index, arr) => {
+          const { name, abbreviation, denominations } = currencie;
+          return (
+            <View key={abbreviation} style={{ gap: 16 }}>
+              <Text
+                style={{
+                  textOverflow: 'ellipsis',
+                  overflow: 'hidden',
+                  width: '100%',
+                }}
+              >
+                {name} - {abbreviation}
+              </Text>
+              <Text>Denominations:</Text>
+              <DenominationList denominations={denominations} />
+              {index !== arr.length - 1 && <Divider style={{ height: 2 }} />}
+            </View>
+          );
+        })}
+      </ScrollView>
     </Container>
   );
 }

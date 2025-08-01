@@ -9,13 +9,13 @@ import { PaperProvider } from 'react-native-paper';
 const Providers = ({ children }: { children: ReactNode }) => {
   const { theme, activeTheme } = useThemeContext();
   return (
-    <NavigationContainer theme={theme.navigationTheme}>
-      <AppStatusBar
-        style={activeTheme === 'dark' ? 'light' : 'dark'}
-        backgroundColor={theme.barStyle}
-      />
-      <PaperProvider theme={theme.paperTheme}>{children}</PaperProvider>
-    </NavigationContainer>
+      <NavigationContainer theme={theme.navigationTheme}>
+        <AppStatusBar
+          style={activeTheme === 'dark' ? 'light' : 'dark'}
+          backgroundColor={theme.barStyle}
+        />
+        <PaperProvider theme={theme.paperTheme}>{children}</PaperProvider>
+      </NavigationContainer>
   );
 };
 

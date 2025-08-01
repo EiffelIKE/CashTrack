@@ -3,17 +3,19 @@ import { configureStore } from '@reduxjs/toolkit';
 import { combineReducers } from 'redux';
 import { persistReducer, persistStore } from 'redux-persist';
 import currenciesReducer, { currenciesSliceName } from './slices/CurrencySlice';
+import historyReducer, { historySliceName } from './slices/HistorySlice';
 import themeReducer, { themeSliceName } from './slices/ThemeSlice';
 
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
-  whitelist: [themeSliceName, currenciesSliceName]
+  whitelist: [themeSliceName, currenciesSliceName, historySliceName]
 };
 
 const rootReducer = combineReducers({
   theme: themeReducer,
-  availableCurrencies: currenciesReducer
+  availableCurrencies: currenciesReducer,
+  history: historyReducer
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

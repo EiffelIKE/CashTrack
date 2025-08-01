@@ -1,6 +1,7 @@
-import { Currency } from '@/types/currency'
+import { Currency, CurrencyWithDenominationAmounts } from '@/types/currency'
 
 export type CurreniesState = {
-  currencies: Currency []
+  currencies: Currency [],
+  activeCurrencies: CurrencyWithDenominationAmounts []
 }
 

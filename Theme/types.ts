@@ -1,9 +1,9 @@
 import type { Theme as NavigationTheme } from '@react-navigation/native';
 import { ColorSchemeName } from 'react-native';
-import { MD2Theme, MD3Theme } from 'react-native-paper';
+import { MD2Theme } from 'react-native-paper';
 
 export interface Theme {
-  paperTheme: MD2Theme | MD3Theme;
+  paperTheme: MD2Theme;
   navigationTheme: NavigationTheme;
   barStyle: string;
   buttons: string;

@@ -1,7 +1,7 @@
 import type { StyleProp, ViewStyle } from 'react-native';
 
 export type BillNoteProps = {
-  denomination: number;
+  denomination: string;
   backgroundColor?: string;
   secondaryColor?: string;
   containerStyles?: StyleProp<ViewStyle>
