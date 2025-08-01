@@ -20,8 +20,6 @@ export interface CurrencyWithDenominationAmounts
   denominations: DenominationWithCount[];
 }
 
-export type ActiveCurrencies = CurrencyAbreviation[]
-
 export type TrackCurrencies = {
   [key in CurrencyAbreviation]: {
     [key in Denomination['amount']]: number

@@ -1,8 +1,14 @@
-import { CurrencyWithDenominationAmounts } from '@/types/currency';
+import { CurrencyAbreviation, CurrencyWithDenominationAmounts, Denomination } from '@/types/currency';
 import { RefObject } from 'react';
 
+export type CurrencyData = {
+  currencyState: Record<Denomination['amount'], string>;
+  total: number,
+  abbreviation: CurrencyAbreviation
+}
+
 export type CurrencyCardRef = {
-  getData: () => { [denomId: string]: number };
+  getData: () => CurrencyData;
   clear: () => void;
 };
 

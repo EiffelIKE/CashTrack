@@ -2,6 +2,7 @@ import {
   selectActiveCurrencies,
   setAddActiveCurrency,
   setDeleteActiveCurrency,
+  setResetActiveCurrencies,
 } from '@/store/slices/CurrencySlice';
 import { Currency, CurrencyAbreviation } from '@/types/currency';
 import { useAppDispatch, useAppSelector } from './useReduxHooks';
@@ -28,5 +29,7 @@ export const useActiveCurrencies = () => {
     );
   };
 
-  return { activeCurrencies, deleteActiveCurrency, addNewActiveCurrency };
+  const resetActiveCurrencies = () => dispatch(setResetActiveCurrencies())
+
+  return { activeCurrencies, deleteActiveCurrency, addNewActiveCurrency, resetActiveCurrencies };
 };

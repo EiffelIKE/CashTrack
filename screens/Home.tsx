@@ -1,50 +1,79 @@
 import { Container } from '@/components/Container';
 import { CurrencyFormCard } from '@/components/CurrencyCard';
-import { CurrencyCardRef } from '@/components/CurrencyCard/types';
+import { CurrencyCardRef, CurrencyData } from '@/components/CurrencyCard/types';
 import { DraggableButton } from '@/components/DraggableButton';
 import { Text, Title } from '@/components/Text';
 import { useActiveCurrencies } from '@/hooks/useActiveCurrencies';
 import { useAvailableCurrencies } from '@/hooks/useAvailableCurrencies';
 import { usePlatform } from '@/hooks/usePlatform';
+import { useAppDispatch } from '@/hooks/useReduxHooks';
+import { setAddHistory } from '@/store/slices/HistorySlice';
 import { useThemeContext } from '@/Theme/context';
+import { shareText } from '@/utils/shareText';
+
+import { SuccessModal } from '@/components/SuccessModal';
+import { useAppNavigation } from '@/hooks/useAppNavigation';
+import { generateTextFromTotal } from '@/utils/generateTextFromTotal';
+import { getNewHistoryTrackfromTotal } from '@/utils/getNewHistoryTrackFromTotal';
 import { useHeaderHeight } from '@react-navigation/elements';
-import { createRef, RefObject, useEffect, useRef } from 'react';
+import { createRef, RefObject, useEffect, useRef, useState } from 'react';
 import { KeyboardAvoidingView, ScrollView, View } from 'react-native';
-import { Checkbox } from 'react-native-paper';
+import { Checkbox, Menu } from 'react-native-paper';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+//to-DO- add more danger actions info
 
 export const HomeScreen = () => {
   const { isIos } = usePlatform();
   const headerHeight = useHeaderHeight();
   const { theme } = useThemeContext();
   const insets = useSafeAreaInsets();
+  const { navigate } = useAppNavigation();
   const refs = useRef<Record<string, RefObject<CurrencyCardRef | null>>>({});
+  const [anchor, setAnchor] = useState<{ x: number; y: number } | null>(null);
+  const dispatch = useAppDispatch();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const curencies = useAvailableCurrencies();
-  const { activeCurrencies, deleteActiveCurrency, addNewActiveCurrency } =
-    useActiveCurrencies();
+  const {
+    activeCurrencies,
+    deleteActiveCurrency,
+    addNewActiveCurrency,
+    resetActiveCurrencies,
+  } = useActiveCurrencies();
 
   const getTotal = () => {
-    const allData: any[] = [];
+    const allData: CurrencyData[] = [];
     activeCurrencies.forEach((currency) => {
       const ref = refs.current[currency.abbreviation];
       if (ref?.current) {
-        console.log('no ref');
-        //allData.push(ref.current.getData());
+        allData.push(ref.current.getData());
+      }
+    });
+    return allData;
+  };
+
+  const saveTrack = () => {
+    const total = getTotal();
+    const track = getNewHistoryTrackfromTotal({ total, activeCurrencies });
+    dispatch(setAddHistory(track));
+    setIsModalOpen(true);
+  };
+
+  const closeDraggMenu = () => setAnchor(null);
+  const closeModal = () => setIsModalOpen(false);
+
+  const clearAllDenominations = () => {
+    activeCurrencies.forEach((currency) => {
+      const ref = refs.current[currency.abbreviation];
+      if (ref?.current) {
         ref.current.clear();
       }
     });
   };
 
-  const clearAll = () => {
-    activeCurrencies.forEach((currency) => {
-      const ref = refs.current[currency.abbreviation];
-      if (ref?.current) {
-        console.log('no ref');
-        //allData.push(ref.current.getData());
-        ref.current.clear();
-      }
-    });
+  const createTextFromTotal = () => {
+    const total = getTotal();
+    return generateTextFromTotal(total);
   };
 
   useEffect(() => {
@@ -132,7 +161,69 @@ export const HomeScreen = () => {
           </ScrollView>
         </Container>
       </KeyboardAvoidingView>
-      <DraggableButton />
+      {activeCurrencies.length > 0 && (
+        <DraggableButton onPress={setAnchor} isDraggable={!anchor} />
+      )}
+      {
+        <Menu
+          elevation={3}
+          visible={Boolean(anchor)}
+          onDismiss={closeDraggMenu}
+          anchor={anchor}
+        >
+          <Menu.Item
+            onPress={() => {
+              saveTrack();
+              closeDraggMenu();
+            }}
+            title="Save"
+            leadingIcon="content-save"
+          />
+          <Menu.Item
+            onPress={() => {
+              clearAllDenominations();
+              closeDraggMenu();
+            }}
+            title="Clear denominations"
+            leadingIcon="delete"
+          />
+          <Menu.Item
+            onPress={() => {
+              resetActiveCurrencies();
+              closeDraggMenu();
+            }}
+            title="Clear all"
+            leadingIcon="delete-forever"
+          />
+          <Menu.Item
+            onPress={() => {
+              shareText(createTextFromTotal());
+              closeDraggMenu();
+            }}
+            title="Share"
+            leadingIcon="share"
+          />
+        </Menu>
+      }
+      <SuccessModal
+        primaryAction={{
+          onPress: () => {
+            closeModal();
+          },
+          label: 'Ok',
+        }}
+        secondaryAction={{
+          onPress: () => {
+            closeModal();
+            navigate('History');
+            resetActiveCurrencies();
+          },
+          label: 'See History',
+        }}
+        visible={isModalOpen}
+        onDismiss={closeModal}
+        title='Cash-Track saved in history!'
+      />
     </>
   );
 };

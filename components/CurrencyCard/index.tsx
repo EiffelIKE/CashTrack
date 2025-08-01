@@ -3,6 +3,7 @@ import { RefreshIcon } from '@/components/RefreshIcon';
 import { Text } from '@/components/Text';
 import { useThemeContext } from '@/Theme/context';
 import { Denomination } from '@/types/currency';
+import { parseAmount } from '@/utils/parseAmount';
 import { FC, useImperativeHandle, useState } from 'react';
 import { View } from 'react-native';
 import { Divider, Surface } from 'react-native-paper';
@@ -30,7 +31,6 @@ export const CurrencyFormCard: FC<CurrencyCardProps> = ({ ref, currency }) => {
   }, 0);
 
   const refreshCardState = () => {
-    console.log('refreshing');
     setCurrencyState(
       currency.denominations.reduce(
         (acc, denomination) => {
@@ -42,10 +42,13 @@ export const CurrencyFormCard: FC<CurrencyCardProps> = ({ ref, currency }) => {
     );
   };
 
-  console.log(currencyState);
-
   useImperativeHandle<null, CurrencyCardRef | null>(ref, () => ({
-    getData: () => currencyState,
+    getData: () => ({
+      currencyState,
+      abbreviation,
+      total
+    }
+    ),
     clear: refreshCardState,
   }));
 
@@ -92,7 +95,7 @@ export const CurrencyFormCard: FC<CurrencyCardProps> = ({ ref, currency }) => {
       <View style={styles.totalContainer}>
         <Text>Total: </Text>
         <Text>
-          {total} {abbreviation}
+          {parseAmount({ amount: total, currency: abbreviation })}
         </Text>
       </View>
     </Surface>

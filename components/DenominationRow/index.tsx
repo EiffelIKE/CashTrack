@@ -3,6 +3,7 @@ import { SmallText, Text } from '@/components/Text';
 import { BILL_COLORS } from '@/constants/billColors';
 import { useThemeContext } from '@/Theme/context';
 import { isValidDenCount } from '@/utils/isValidDenCount';
+import { parseAmount } from '@/utils/parseAmount';
 import { FC, memo } from 'react';
 import { TextInput, View } from 'react-native';
 import { styles } from './styles';
@@ -72,7 +73,7 @@ const DenominationRowForm: FC<DenominationRowProps> = ({
         </View>
       </View>
       <Text>
-        {total} {abbreviation}
+        {parseAmount({ amount: total, currency: abbreviation })}
       </Text>
     </View>
   );
