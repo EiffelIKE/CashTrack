@@ -11,12 +11,16 @@ export function CurrenciesScreen() {
   const insets = useSafeAreaInsets();
 
   return (
-    <Container style={{ gap: 24 }}>
-      <Title>Available currencies</Title>
+    <Container>
       <ScrollView
         style={{ height: '100%' }}
-        contentContainerStyle={{ gap: 24, paddingBottom: insets.bottom }}
+        contentContainerStyle={{
+          gap: 24,
+          paddingTop: 24,
+          paddingBottom: insets.bottom + 24,
+        }}
       >
+        <Title>Available currencies</Title>
         {currencies.map((currencie, index, arr) => {
           const { name, abbreviation, denominations } = currencie;
           return (

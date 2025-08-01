@@ -19,12 +19,12 @@ export const DenominationList: FC<DenominationListProps> = ({
         containerStyles,
       ]}
     >
-      {denominations?.map((num, index) => {
+      {denominations?.map((denomination, index) => {
         const billIndex = index > 10 ? index % 10 : index;
         const backgroundColor = BILL_COLORS[billIndex || 0];
         return (
-          <View key={num} style={{ width: '20%', alignItems: 'center' }}>
-            <BillNote denomination={num} backgroundColor={backgroundColor} />
+          <View key={denomination.id} style={{ width: '20%', alignItems: 'center' }}>
+            <BillNote denomination={denomination.amount} backgroundColor={backgroundColor} />
           </View>
         );
       })}

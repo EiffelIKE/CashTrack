@@ -1,6 +1,7 @@
+import { Denomination } from '@/types/currency'
 import { StyleProp, ViewStyle } from 'react-native'
 
 export type DenominationListProps = {
-  denominations?: number [], 
+  denominations?: Denomination[], 
   containerStyles?: StyleProp<ViewStyle>
 }
