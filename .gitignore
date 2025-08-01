@@ -37,3 +37,6 @@ yarn-error.*
 *.tsbuildinfo
 
 .history
+
+android/
+ios/
