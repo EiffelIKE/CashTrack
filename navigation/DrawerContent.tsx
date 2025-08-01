@@ -10,7 +10,7 @@ import {
 } from '@react-navigation/drawer';
 import { Image } from 'expo-image';
 import { View } from 'react-native';
-import { Drawer, Switch, Text, TouchableRipple } from 'react-native-paper';
+import { Divider, Drawer, Switch, Text, TouchableRipple } from 'react-native-paper';
 
 export const DrawerContent = (props: DrawerContentComponentProps) => {
   const { activeTheme, toggleTheme, theme } = useThemeContext();
@@ -20,13 +20,14 @@ export const DrawerContent = (props: DrawerContentComponentProps) => {
 
   return (
     <DrawerContentScrollView {...props}>
-      <View style={{ height: 200, alignItems: 'center', gap: 10 }}>
+      <View style={{ height: 210, alignItems: 'center', gap: 8}}>
         <Image
           source={logo}
           style={{ width: 150, height: 150, objectFit: 'contain' }}
         />
         <Text style={{ fontSize: 18, fontWeight: 'bold' }}>CashTrack</Text>
       </View>
+      <Divider style={{marginBottom: 16}} />
       <DrawerItemList {...props} />
       <Drawer.Section>
         <View

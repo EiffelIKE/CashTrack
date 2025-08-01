@@ -15,5 +15,10 @@ export const initialMockCurrencies: Currency[] = [
     name: "UE Euros",
     abbreviation: "EUR",
     denominations: [5, 10, 20, 50, 100]
+  },
+  {
+    name: "Mexican pesos",
+    abbreviation: "MXN",
+    denominations: [5, 10, 20, 50, 100]
   }
 ]

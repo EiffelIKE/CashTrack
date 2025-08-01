@@ -13,9 +13,8 @@ export const styles = StyleSheet.create({
     borderWidth: 4,
   },
   oval: {
-    width: 12,
-    height: 12,
-    borderRadius: 10,
+    width: 8,
+    height: 8,
     position: 'absolute',
   },
   topLeft: { top: 0, left: 0 },
