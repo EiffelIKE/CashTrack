@@ -17,10 +17,10 @@
     "preview": {
       "node": "22.11.0",
       "android": {
-        "buildType": "app-bundle",
+        "buildType": "apk",
         "env": {}
       },
-      "distribution":"store"
+      "distribution":"internal"
     },
     "production": {
       "node": "22.11.0",

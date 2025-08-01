@@ -3,6 +3,7 @@ import { RefreshIcon } from '@/components/RefreshIcon';
 import { Text } from '@/components/Text';
 import { useThemeContext } from '@/Theme/context';
 import { Denomination } from '@/types/currency';
+import { isValidDenCount } from '@/utils/isValidDenCount';
 import { parseAmount } from '@/utils/parseAmount';
 import { FC, useImperativeHandle, useState } from 'react';
 import { View } from 'react-native';
@@ -26,8 +27,11 @@ export const CurrencyFormCard: FC<CurrencyCardProps> = ({ ref, currency }) => {
 
   const { name, abbreviation, denominations } = currency;
 
-  const total = Object.keys(currencyState).reduce((acc, count) => {
-    return acc + Number(currencyState[count]) * Number(count);
+  const total = Object.keys(currencyState).reduce((acc, den) => {
+    if(isValidDenCount({ count: Number(currencyState[den]) })) {
+      return acc + Number(currencyState[den]) * Number(den);
+    } 
+    return acc;
   }, 0);
 
   const refreshCardState = () => {

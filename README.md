@@ -1,4 +1,4 @@
-# Welcome to your Expo app 👋
+# CashTrace
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
@@ -23,28 +23,81 @@ In the output, you'll find options to open the app in a
 - [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
 - [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+If you need a development build dont hesitate to ask!
 
-## Get a fresh project
+# 📱 CashTrack App
 
-When you're ready, run:
+**CashTrack** is a mobile app designed to help users count and manage cash denominations across multiple currencies. The app consists of **three main screens**, accessible through a **Drawer Navigator** located at the top-left corner.
 
-```bash
-npm run reset-project
-```
+---
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## 🧭 Screens Overview
 
-## Learn more
+### 1. Start Screen (CashTrack Root Service)
 
-To learn more about developing your project with Expo, look at the following resources:
+- On launch, users must select which **currencies** will be used for the denomination counting process.
+- A **currency form** is displayed for each selected currency.
+- Each currency contains its own set of denominations by amount.
+- Users can input as many denomination amounts as needed, with a maximum per amount of **999,999**.
+- The app automatically calculates:
+  - The **subtotal per denomination**.
+  - The **total for each currency**.
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+### 2. Floating Action Button (Top-Right Corner)
 
-## Join the community
+A **draggable button** is initially placed in the top-right corner. When pressed, it reveals the following options:
 
-Join our community of developers creating universal apps.
+- 💾 **Save** the current CashTrack state to history.
+- 🧹 **Clear** all currency forms.
+- 📤 **Share** the current global state as a text summary.
+- 🔄 **Restart** the entire process.
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+### 3. Currency Screen
+
+- Displays all selected currencies along with their current denomination entries.
+
+### 4. History Screen
+
+- Shows a list of the latest **CashTrack actions**.
+- Each history entry supports the following actions:
+  - 📄 **Clone** a previous entry.
+  - 🗑️ **Delete** an entry.
+  - 📤 **Share** the entry as text.
+
+---
+
+## 📌 Notes
+
+- The UI is optimized for mobile devices.
+- All calculations update in real-time as the user adds or modifies denominations.
+- The share option generates a clear, copy-paste-friendly text summary.
+
+---
+
+## 🚀 Built With
+
+- [React Native](https://reactnative.dev/)
+- [Expo](https://expo.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [React Navigation](https://reactnavigation.org/)
+- [Redux-toolkit](https://redux-toolkit.js.org/)
+- [React-Redux](https://react-redux.js.org/)
+- [Redux-persist](https://github.com/rt2zz/redux-persist)
+- [React-Async-Storage](https://github.com/react-native-async-storage/async-storage)
+
+---
+
+## 📂 Project Status
+
+> Version: `1.1`  
+> Features in progress:
+> - Currency exchange rates support  
+> - Multi-language support  
+
+---
+
+## 📬 Contact
+
+For feedback or questions, please reach out at [your-email@example.com].
+
+
