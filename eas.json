@@ -1,0 +1,58 @@
+{
+  "cli": {
+    "version": ">= 7.6.0",
+    "appVersionSource": "remote"
+  },
+  "build": {
+    "development": {
+      "node": "22.11.0",
+      "developmentClient": true,
+      "distribution": "internal",
+      "ios": {
+        "simulator": true
+      },
+      "env": {
+      }
+    },
+    "preview": {
+      "node": "22.11.0",
+      "ios": {
+        "env": {
+          "EAS_BUILD_DISABLE_NPM_CACHE": "1",
+          "EAS_BUILD_DISABLE_MAVEN_CACHE": "1",
+          "EAS_BUILD_DISABLE_COCOAPODS_CACHE": "1",
+          "EXPO_PUBLIC_CALLBACKS_URL": "https://awscallbacksstg.sendvalu.com",
+          "EXPO_PUBLIC_MSP_BASE_URL": "https://iosnewmultiservicemiddlelayerstg.sendvalu.com/",
+          "EXPO_PUBLIC_ACCOUNT_BASE_URL": "https://iosaccountmiddlelayerstg.sendvalu.com/",
+          "EXPO_PUBLIC_ACCOUNT_APP_ID": "0819c4cc-3bce-4c37-930f-387a589fe1c7",
+          "EXPO_PUBLIC_CMS_BASE_URL": "https://homepage.sendvalu.com",
+          "EXPO_PUBLIC_PSP_BASE_URL": "https://devpspapp.sendvalu.com/",
+          "EXPO_PUBLIC_MSP_APP_ID": "3fa01d16-3019-4c49-b7c9-8a5c10ef2b4f",
+          "EXPO_PUBLIC_STRAPI_URL": "https://strapicms.sendvalu.com",
+          "EXPO_PUBLIC_STRAPI_TOKEN": "e69b4c41dcdce55882f0365e1ee753aaee4ea0361197bc4e1eb08d8c4d04f5577e3c8cb776f02695519d21d12896b64df50e31c7e0af5c161e051beb6d419b071853c8800e2cc364254f781e73ad35470dd5c3495f62820d37dac646f2f2581a2c72781c66793638acc7d8a3becde458035c96e315e88868972fac29001439f2",
+          "EXPO_PUBLIC_COMREMITFRONT": "https://multiservicecomremitdev.comremit.com",
+          "EXPO_PUBLIC_COMREMITBACK": "https://awscallbackscomremitdev.comremit.com",
+          "EXPO_PUBLIC_ADDONPAYURL": "https://pay.sandbox.realexpayments.com/pay",
+          "EXPO_PUBLIC_MSP_SITE_URL": "https://multiservicestg.sendvalu.com/"
+        }
+      },
+      "android": {
+        "buildType": "app-bundle",
+        "env": {}
+      },
+      "distribution":"store"
+    },
+    "production": {
+      "node": "22.11.0",
+      "autoIncrement": true,
+      "android": {
+        "env": {}
+      },
+      "ios": {}
+    }
+  },
+  "submit": {
+    "devRevision": {},
+    "production": {}
+  }
+}

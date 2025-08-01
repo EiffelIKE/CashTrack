@@ -1,0 +1,47 @@
+{
+  "expo": {
+    "name": "CashTrack",
+    "slug": "cashtrack",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/ios-adaptative.png",
+    "scheme": "cashtrack",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/android-adaptative.png",
+        "backgroundColor": "#ffffff"
+      },
+      "edgeToEdgeEnabled": true,
+      "package": "com.eiffel25.cashtrack"
+    },
+    "plugins": [
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#232323",
+          "image": "./assets/images/splash-light.png",
+          "dark": {
+            "image": "./assets/images/splash-dark.png",
+            "backgroundColor": "#0F262E"
+          },
+          "imageWidth": 200
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "114f2dc7-3ef4-473c-9b58-8e07fc1106ea"
+      }
+    },
+    "owner": "eiffel25"
+  }
+}
