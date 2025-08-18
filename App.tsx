@@ -20,8 +20,8 @@ const App = () => {
     return null;
   }
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <SafeAreaView style={{flex: 1}} >
+    <GestureHandlerRootView style={{ flex: 1, }}>
+      <SafeAreaView style={{flex: 1 }} >
         <Providers>
           <DrawerNavigator />
         </Providers>

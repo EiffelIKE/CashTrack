@@ -11,13 +11,14 @@ import { setAddHistory } from '@/store/slices/HistorySlice';
 import { useThemeContext } from '@/Theme/context';
 import { shareText } from '@/utils/shareText';
 
+import { KeyboardAvoidView } from '@/components/KeyboardAvoidView';
 import { SuccessModal } from '@/components/SuccessModal';
 import { useAppNavigation } from '@/hooks/useAppNavigation';
 import { generateTextFromTotal } from '@/utils/generateTextFromTotal';
 import { getNewHistoryTrackfromTotal } from '@/utils/getNewHistoryTrackFromTotal';
 import { useHeaderHeight } from '@react-navigation/elements';
 import { createRef, RefObject, useEffect, useRef, useState } from 'react';
-import { KeyboardAvoidingView, ScrollView, View } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import { Checkbox, Menu } from 'react-native-paper';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 //to-DO- add more danger actions info
@@ -86,20 +87,19 @@ export const HomeScreen = () => {
 
   return (
     <>
-      <KeyboardAvoidingView
-        style={{ flex: 1 }}
-        behavior={isIos ? 'padding' : undefined}
-        keyboardVerticalOffset={insets.bottom + 24 + headerHeight}
-      >
-        <Container style={{ gap: 24, position: 'relative' }}>
-          <ScrollView
-            style={{ height: '100%' }}
-            contentContainerStyle={{
+      <KeyboardAvoidView>
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          automaticallyAdjustKeyboardInsets
+          keyboardDismissMode="on-drag"
+          style={{ flex: 1 }}
+        >
+          <Container
+            style={{
               gap: 24,
-              paddingTop: 24,
-              paddingBottom: insets.bottom + 24,
+              position: 'relative',
+              paddingVertical: insets.bottom + 24,
             }}
-            showsVerticalScrollIndicator={false}
           >
             <Title>Select curencies to use:</Title>
             <View style={{ gap: 12 }}>
@@ -158,9 +158,9 @@ export const HomeScreen = () => {
                 * Select at least one currency to track
               </Text>
             )}
-          </ScrollView>
-        </Container>
-      </KeyboardAvoidingView>
+          </Container>
+        </ScrollView>
+      </KeyboardAvoidView>
       {activeCurrencies.length > 0 && (
         <DraggableButton onPress={setAnchor} isDraggable={!anchor} />
       )}
@@ -222,7 +222,7 @@ export const HomeScreen = () => {
         }}
         visible={isModalOpen}
         onDismiss={closeModal}
-        title='Cash-Track saved in history!'
+        title="Cash-Track saved in history!"
       />
     </>
   );
